@@ -1,15 +1,19 @@
-class Person:
-  def __init__(self, fname, lname):
-    self.firstname = fname
-    self.lastname = lname
+class Vehicle:
+  def __init__(self, brand, model):
+    self.brand = brand
+    self.model = model
 
-  def printname(self):
-    print(self.firstname, self.lastname)
+  def move(self):
+    print("Move!")
 
-class Student(Person):
-  def __init__(self, fname, lname, grade):
-    super().__init__(fname, lname)
-    self.grade = grade
+class Human:
+  def __init__(self, name):
+    self.name = name
 
-pers1 = Person("Temirlan", "K.")
-stud1 = Student("Dauren", "Zh.", 1)
+class Terminator(Vehicle, Human):
+    def __init__(self, brand, model, name):
+        super().__init__(brand, model, name)
+    def showInfo(self):
+       print(self.brand, self.model, self.name)
+
+t1000 = Terminator("scary brand", "t1000", "Arnold")
