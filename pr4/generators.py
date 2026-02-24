@@ -2,19 +2,21 @@
 
 class MyRange:
     def __init__(self, a, b, step):
-        self.a = a
-        self.b = b
+        self.start = a
+        self.end = b
         self.step = step
 
+    # define iterator (return the object itself)
     def __iter__(self):
-        self.x = self.a
+        self.x = self.start
         return self
     
+    # yield next item
     def __next__(self):
-        if self.a < self.b:
-            x = self.a
-            self.a += self.step
-            return x
+        if self.x < self.end:
+            item = self.x
+            self.x += self.step
+            return item
         else:
             raise StopIteration
         
@@ -22,7 +24,7 @@ for i in iter(MyRange(0, 101, 10)):
     print(i)
 
 
-# Generator (each yield is called implicitly using __next__())
+# Generator (yield outputs value while retaining function progress)
 def Fibonacci(n):
     last = 1
     current = 1
