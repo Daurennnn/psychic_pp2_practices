@@ -3,7 +3,7 @@ import json
 
 class Receipt:
     def __init__(self, path):
-        with open(path, encoding='utf-8') as f:
+        with open(path, encoding='utf-8') as f: # encoding='utf-8' allows various languages
             self.receipt = f.read()
 
     def prices(self):
@@ -43,7 +43,7 @@ class Receipt:
             'time': self.time(),
             'payment_method': self.pay_method()
         }
-        return json.dumps(data, indent=4, ensure_ascii=False)
+        return json.dumps(data, indent=4, ensure_ascii=False) # ensure_ascii=False allows various languages
 
 
 path1 = "pr5/raw.txt"
