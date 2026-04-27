@@ -1,7 +1,6 @@
 import pygame
 import os
 import math
-import datetime
 
 class ImageLibrary:
     def __init__(self):
@@ -14,27 +13,28 @@ class ImageLibrary:
             self._image_library[path] = image
         return image
     
-def rotate_image(image, angle, centerX, centerY):
+def rotate_image(image, angle):
     rotated_image = pygame.transform.rotate(image, angle)
-    rect_centered = rotated_image.get_rect(center=image.get_rect(center=(centerX, centerY)).center)
+    rect_centered = rotated_image.get_rect(center=image.get_rect(center=(50, 50)).center)
     return (rotated_image, rect_centered)
+# def rotate_axis(image, angle, x, y):
+#     rotated_image = pygame.transform.rotate(image, angle)
+
+#     center_x, center_y = 
+
+#     rect_centered = rotated_image.get_rect(center=image.get_rect)
 
 pygame.init()
-screen = pygame.display.set_mode((800, 600))
+screen = pygame.display.set_mode((400, 300))
 done = False
 clock = pygame.time.Clock()
 
 Sprites = ImageLibrary()
+Sprites.get_image('tutorial_2_3.png')
 
-face = Sprites.get_image('clock_face.png')
-hours = Sprites.get_image('hand_hours.png')
-minutes = Sprites.get_image('hand_minutes.png')
-
-# face = pygame.transform.scale(face, (200, 200))
-hours = pygame.transform.scale_by(hours, 2)
-minutes = pygame.transform.scale_by(minutes, 2)
-
-angleH, angleM = 0, 0
+ball = Sprites.get_image('tutorial_2_3.png')
+ball_directed = ball
+angle = 0
 color = (0, 255, 0)
 
 while not done:
@@ -45,24 +45,16 @@ while not done:
             color = (255, 0, 0)
         if event.type == pygame.KEYUP and event.key == pygame.K_SPACE:
             color = (0, 255, 0)
-    # if pygame.key.get_pressed()[pygame.K_SPACE]:
-    #     angleH += 1
-    #     angleM += 3
-
-    date_now = datetime.datetime.now()
-    hour_now = date_now.hour
-    minute_now = date_now.minute
-    
-    angleH = (hour_now % 12 + minute_now / 60) / 12 * 360 + 52
-    angleM = minute_now / 60 * 360 - 57.8
-
-    print(hour_now, minute_now)
+    if pygame.key.get_pressed()[pygame.K_SPACE]:
+        angle += 1
 
     screen.fill((0, 0, 0))
+    indicators_surface = pygame.Surface((50, 50), pygame.SRCALPHA)
+    pygame.draw.rect(indicators_surface, color, pygame.Rect(5, 5, 40, 40))
+    screen.blit(indicators_surface, (0, 0))
 
-    screen.blit(face, (0, 0))
-    screen.blit(*rotate_image(hours, -angleH, 400, 312))
-    screen.blit(*rotate_image(minutes, -angleM, 400, 312))
+    screen.blit(*rotate_image(ball, angle))
+    
     
     pygame.display.flip()
     clock.tick(60)
