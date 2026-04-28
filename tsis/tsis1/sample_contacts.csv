@@ -1,0 +1,6 @@
+first_name,last_name,phone,phone_type,email,birthday,group
+Alice,Smith,+1-555-0101,mobile,alice@gmail.com,1990-03-15,Friend
+Bob,Jones,+1-555-0202,work,bob@company.com,1985-07-22,Work
+Carol,White,+1-555-0303,home,carol@yahoo.com,1992-11-08,Family
+David,Brown,+1-555-0404,mobile,david@gmail.com,,Friend
+Eve,Davis,+1-555-0505,work,eve@startup.io,1988-01-30,Work
